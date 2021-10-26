@@ -3,6 +3,8 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+from Utilities.TestData import TestData
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -18,7 +20,7 @@ def setup(request):
         driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
     elif browser_name == "firefox":
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-    driver.get("https://www.flipkart.com/")
+    driver.get(TestData.URL)
     driver.maximize_window()
     request.cls.driver = driver
     yield
