@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
 from Pages.CheckoutPage import CheckOutPage
+from Tests.BaseTest import BaseTest
 
 
-class SelectedProductPage:
+class SelectedProductPage(BaseTest):
 
     def __init__(self, driver):
         self.driver = driver
@@ -19,8 +20,9 @@ class SelectedProductPage:
         return self.driver.find_element(*SelectedProductPage.button_click_check)
 
     def check_delivery_time(self):
+        log = self.implement_logging()
         delivery_time = self.driver.find_element(*SelectedProductPage.text_delivery_time)
-        print("Delivery time is "+ delivery_time.text)
+        log.info("Delivery time is " + delivery_time.text)
 
     def add_to_cart(self):
         self.driver.find_element(*SelectedProductPage.button_add_to_cart).click()

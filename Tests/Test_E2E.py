@@ -1,15 +1,15 @@
 import time
 
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
 
 from Pages.HomePage import HomePage
 from Tests.BaseTest import BaseTest
 
 
-class Test_E2E(BaseTest):
+class Test_E2E_addtocart(BaseTest):
 
     def test_flipkart_addtocart(self):
+        log = self.implement_logging()
         homepage = HomePage(self.driver)
         time.sleep(2)
         homepage.click_close_button().click()
@@ -17,6 +17,7 @@ class Test_E2E(BaseTest):
         action.move_to_element(homepage.click_electronics_menu()).perform()
         time.sleep(2)
         action.move_to_element(homepage.click_wiredheadphones_button()).click().perform()
+        log.info("Clicked on Dynamic Element : Wired Headphones")
         time.sleep(2)
         productspage = homepage.cartpage_object()
         productspage.assert_count()
